@@ -47,6 +47,8 @@ class Card:
 
 
 card = Card()
-print(card.hexdict)
+print(card.hexdict[7][0])
+card.hexdict[7][0] = '00000000007700000000000000000000'
 card.write()
-print(card.read())
+card2 = Card()
+print(card2.hexdict[7][0])
