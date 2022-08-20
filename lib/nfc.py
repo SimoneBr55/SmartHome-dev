@@ -2,7 +2,7 @@
 Module to perform nfc mifareclassic operations
 """
 import os  # TODO: replace os functions with modern way
-
+import binascii
 
 class Card:
     """
@@ -18,8 +18,8 @@ class Card:
                 hexdump = pointer.read().hex()
         else:
             os.system('nfc-mfclassic r a u /tmp/card.read')
-            with open('/tmp/card.read', 'rb') as card:
-                hexdump = card.read().hex()
+            with open('/tmp/card.read', 'rb') as reading:
+                hexdump = reading.read().hex()
             os.system('rm /tmp/card.read')
         hexmap = map(''.join, zip(*[iter(hexdump)]*32))
         hexdict = {}
@@ -39,10 +39,10 @@ class Card:
     def write(self, file=None):
         if not isinstance(file, str):
             file = '/tmp/card.write'
-            with open(file, 'wb') as card:
+            with open(file, 'wb') as writing:
                 for sector in self.hexdict:
                     for block in self.hexdict[sector]:
-                        card.write(block.hex())
+                        writing.write(binascii.unhexlify(''.join(block.split())))
         os.system('nfc-mfclassic w a u ' + file)
 
 
