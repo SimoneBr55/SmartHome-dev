@@ -42,4 +42,4 @@ class Card:
 
 
 card = Card()
-print(card.hexdump)
+print(card.hexdict)
