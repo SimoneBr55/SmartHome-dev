@@ -12,7 +12,7 @@ class Card:
     def __init__(self, file=None):
         self.hexdump, self.hexmap, self.hexdict = self.read(file)
 
-    def read(self, file=None):
+    def read_all(self, file=None):
         if isinstance(file, str):
             with open(file, 'rb') as pointer:
                 hexdump = pointer.read().hex()
@@ -36,14 +36,36 @@ class Card:
                 block += 1
         return hexdump, hexmap, hexdict
 
-    def write(self, file=None):
-        if not isinstance(file, str):
-            file = '/tmp/card.write'
-            with open(file, 'wb') as writing:
-                for sector in self.hexdict:
-                    for block in self.hexdict[sector]:
+    def write_all(self, file=None, dictionary=None, dump=None):
+        out_file = '/tmp/card.write'
+        if isinstance(file, str):
+            out_file = file
+        elif isinstance(dictionary, dict):
+            with open(out_file, 'wb') as writing:
+                for sector in dictionary:
+                    for block in dictionary[sector]:
                         writing.write(binascii.unhexlify(''.join(block.split())))
-        os.system('nfc-mfclassic w a u ' + file)
+        elif isinstance(dump, str):
+            with open(out_file, 'wb') as writing:
+                writing.write(binascii.unhexlify(''.join(dump.split())))
+        else:
+            print("Error. Add Logging and exceptions...")
+            return False
+        os.system('nfc-mfclassic w a u ' + out_file)
+        if file is None:
+            os.system('rm /tmp/card.write')
+        return True
+
+
+    def write_block(self,sector, block, msg):
+        if not isinstance(sector, int) or not isinstance(block, int) or not isinstance(msg, str):
+            print("Sector has to be a `int`, Block has to be `int`, Message has to be a `str`")
+            return False
+        hex_string = binascii.hexlify(msg)
+        if len(hex_string) is not 32:  # aggiungere possibilità di padding per valori inferiori
+            print("32 hex values are needed")
+            return False
+        self.hexdict[]
 
 
 card = Card()
