@@ -41,7 +41,7 @@ class Card:
             file = '/tmp/card.write'
             with open(file, 'wb') as card:
                 for sector in self.hexdict:
-                    for block in sector:
+                    for block in self.hexdict[sector]:
                         card.write(block.hex())
         os.system('nfc-mfclassic w a u ' + file)
 
