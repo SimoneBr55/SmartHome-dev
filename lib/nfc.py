@@ -36,9 +36,9 @@ class Card:
                 block += 1
         return hexdump, hexmap, hexdict
 
-    def write(self, file=None):
-        if not isinstance(file, str):
-            hexdict =
+    #def write(self, file=None):
+    #    if not isinstance(file, str):
+    #        hexdict =
 
 
 card = Card()
