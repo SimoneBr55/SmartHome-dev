@@ -36,10 +36,17 @@ class Card:
                 block += 1
         return hexdump, hexmap, hexdict
 
-    #def write(self, file=None):
-    #    if not isinstance(file, str):
-    #        hexdict =
+    def write(self, file=None):
+        if not isinstance(file, str):
+            file = '/tmp/card.write'
+            with open(file, 'wb') as card:
+                for sector in self.hexdict:
+                    for block in sector:
+                        card.write(block.hex())
+        os.system('nfc-mfclassic w a u ' + file)
 
 
 card = Card()
 print(card.hexdict)
+card.write()
+print(card.read())
