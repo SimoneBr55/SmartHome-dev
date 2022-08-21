@@ -10,7 +10,7 @@ import time
 card = nfc.Card()
 rnd = crypto.get_random_block()
 card.write_block(5, 2, str(rnd))
-
+print(str(rnd))
 del card
 
 for i in range(1, 11):
