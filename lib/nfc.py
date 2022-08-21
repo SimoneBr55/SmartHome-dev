@@ -4,6 +4,7 @@ Module to perform nfc mifareclassic operations
 import os  # TODO: replace os functions with modern way
 import binascii
 
+
 class Card:
     """
     Class defining a Card object
