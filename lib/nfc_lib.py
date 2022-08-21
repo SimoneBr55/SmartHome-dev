@@ -29,7 +29,7 @@ class Card:
         for hexstr in hexmap:
             if hexdict.get(sector) is None:
                 hexdict[sector] = []
-            hexdict[sector].append(hexstr)
+            hexdict[sector].append(bytes(hexstr))
             if block == 4:
                 block = 1
                 sector += 1
@@ -55,6 +55,7 @@ class Card:
                 for sector in self.hexdict:
                     for block in self.hexdict[sector]:
                         writing.write(binascii.unhexlify(''.join(block.split())))
+                        # writing.write(block.split())))
         os.system('nfc-mfclassic w a u ' + out_file)
         if file is None:
             os.system('rm ' + out_file)
