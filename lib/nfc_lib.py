@@ -11,7 +11,7 @@ class Card:
     """
 
     def __init__(self, file=None):
-        self.hexdump, self.hexmap, self.hexdict = self.read(file)
+        self.hexdump, self.hexmap, self.hexdict = self.read_all(file)
 
     def read_all(self, file=None):  # maybe static
         if isinstance(file, str):
