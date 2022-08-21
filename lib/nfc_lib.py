@@ -58,8 +58,8 @@ class Card:
                         writing.write(block)
                         # writing.write(block.split())))
         os.system('nfc-mfclassic w a u ' + out_file)
-        if file is None:
-            os.system('rm ' + out_file)
+        #if file is None:
+        #    os.system('rm ' + out_file)
         return True
 
     def write_block(self, sector, block, msg):
