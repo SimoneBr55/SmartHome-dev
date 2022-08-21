@@ -67,7 +67,7 @@ class Card:
         if not isinstance(block, int):
             print("Block has to be a int")
             return False
-        if not isinstance(msg, bytes) or not isinstance(msg, str):
+        if not isinstance(msg, bytes) and not isinstance(msg, str):
             print("Message has to be a `bytes` or `str`")
             print(type(msg))
             return False
