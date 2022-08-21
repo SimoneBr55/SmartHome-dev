@@ -45,7 +45,7 @@ class Card:
             with open(out_file, 'wb') as writing:
                 for sector in dictionary:
                     for block in dictionary[sector]:
-                        writing.write(binascii.unhexlify(''.join(block.split())))
+                        writing.write(block)
         elif isinstance(dump, str):
             with open(out_file, 'wb') as writing:
                 writing.write(binascii.unhexlify(''.join(dump.split())))
@@ -54,7 +54,7 @@ class Card:
             with open(out_file, 'wb') as writing:
                 for sector in self.hexdict:
                     for block in self.hexdict[sector]:
-                        writing.write(binascii.unhexlify(''.join(block.split())))
+                        writing.write(block)
                         # writing.write(block.split())))
         os.system('nfc-mfclassic w a u ' + out_file)
         if file is None:
