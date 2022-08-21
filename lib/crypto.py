@@ -4,7 +4,7 @@ Module to handle crypto
 
 import os
 import binascii
-import nfc_lib
+from . import nfc_lib
 
 # random choice, just to test it
 pass_sector = 5
