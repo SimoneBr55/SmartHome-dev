@@ -3,7 +3,7 @@ Script which will act as a basis
 """
 
 import lib.crypto as crypto
-import lib.nfc as nfc
+import lib.nfc_lib as nfc
 import time
 
 # initiate
