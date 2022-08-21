@@ -4,7 +4,7 @@ Module to handle crypto
 
 import os
 import binascii
-from . import nfc_lib
+from .nfc_lib import Card
 
 # random choice, just to test it
 pass_sector = 5
@@ -18,7 +18,7 @@ def get_random_block():
     return rnd
 
 
-def check_card(card: nfc.Card):
+def check_card(card: Card):
     current = card.hexdict[pass_sector][pass_block]
     with open('/root/next_pass', 'rb') as crypto_file:
         password = crypto_file.read()
