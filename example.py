@@ -10,6 +10,10 @@ import time
 card = nfc.Card()
 rnd = crypto.get_random_block()
 card.write_block(5, 2, rnd)
+
+for element in card.hexdict:
+    for block in element:
+        print(len(block))
 del card
 
 for i in range(1, 11):
