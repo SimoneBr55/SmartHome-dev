@@ -21,7 +21,7 @@ class Card:
             os.system('nfc-mfclassic r a u /tmp/card.read')
             with open('/tmp/card.read', 'rb') as reading:
                 hexdump = reading.read()
-            os.system('rm /tmp/card.read')
+            #os.system('rm /tmp/card.read')
         # hexmap = map(''.join, zip(*[iter(hexdump)]*32))
         hexdict = {}
         sector = 1
