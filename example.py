@@ -16,9 +16,6 @@ for i in range(1, 11):
     print('.')
     time.sleep(1)
 
-
-
-crypto.get_random_block()
 card = nfc.Card()
 if crypto.check_card(card):
     print('The password is correct')
