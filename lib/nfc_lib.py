@@ -82,6 +82,8 @@ class Card:
             print("32 hex values are needed")
             return False
         self.hexdict[sector][block] = hex_string
+        print("Sto per scrivere")
+        print(self.hexdict)
         self.write_all()
         return True
 
