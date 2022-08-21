@@ -9,6 +9,7 @@ import time
 # initiate
 card = nfc.Card()
 rnd = crypto.get_random_block()
+print(rnd)
 card.write_block(5, 2, rnd)
 
 for element in card.hexdict:
