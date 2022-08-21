@@ -16,26 +16,26 @@ class Card:
     def read_all(self, file=None):  # maybe static
         if isinstance(file, str):
             with open(file, 'rb') as pointer:
-                hexdump = pointer.read().hex()
+                hexdump = pointer.read()
         else:
             os.system('nfc-mfclassic r a u /tmp/card.read')
             with open('/tmp/card.read', 'rb') as reading:
-                hexdump = reading.read().hex()
+                hexdump = reading.read()
             os.system('rm /tmp/card.read')
-        hexmap = map(''.join, zip(*[iter(hexdump)]*32))
+        # hexmap = map(''.join, zip(*[iter(hexdump)]*32))
         hexdict = {}
         sector = 1
         block = 1
-        for hexstr in hexmap:
+        for byte in hexdump:
             if hexdict.get(sector) is None:
                 hexdict[sector] = []
-            hexdict[sector].append(bytes(hexstr))
+            hexdict[sector].append(byte)
             if block == 4:
                 block = 1
                 sector += 1
             else:
                 block += 1
-        return hexdump, hexmap, hexdict
+        return hexdump, hexdict
 
     def write_all(self, file=None, dictionary=None, dump=None):  # maybe static
         out_file = '/tmp/card.write'
