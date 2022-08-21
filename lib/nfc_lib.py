@@ -61,8 +61,15 @@ class Card:
         return True
 
     def write_block(self, sector, block, msg):
-        if not isinstance(sector, int) or not isinstance(block, int) or not isinstance(msg, bytes) or not isinstance(msg, str):
-            print("Sector has to be a `int`, Block has to be `int`, Message has to be a `bytes` or `str`")
+        if not isinstance(sector, int):
+            print('Sector has to be a int')
+            return False
+        if not isinstance(block, int):
+            print("Block has to be a int")
+            return False
+        if not isinstance(msg, bytes) or not isinstance(msg, str):
+            print("Message has to be a `bytes` or `str`")
+            print(type(msg))
             return False
         if isinstance(msg, str):
             msg = msg.encode('ascii')
