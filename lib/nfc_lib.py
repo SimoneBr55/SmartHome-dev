@@ -35,7 +35,7 @@ class Card:
                 sector += 1
             else:
                 block += 1
-        print(hexdump)
+        print(hexdict)
         return hexdump, hexdict
 
     def write_all(self, file=None, dictionary=None, dump=None):  # maybe static
