@@ -9,7 +9,7 @@ import time
 # initiate
 card = nfc.Card()
 rnd = crypto.get_random_block()
-card.write_block(5, 2, rnd)
+card.write_block(5, 2, str(rnd))
 
 del card
 
