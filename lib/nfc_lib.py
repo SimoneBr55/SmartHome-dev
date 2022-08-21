@@ -81,7 +81,7 @@ class Card:
         if len(hex_string) != 32:  # add padding possibility for hexstrings with lt 32 hexchars
             print("32 hex values are needed")
             return False
-        self.hexdict[sector][block] = hex_string
+        self.hexdict[sector][block] = binascii.unhexlify(hex_string)
         print("Sto per scrivere")
         print(self.hexdict)
         self.write_all()

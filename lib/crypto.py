@@ -14,7 +14,8 @@ pass_block = 2
 def get_random_block():
     rnd = binascii.b2a_hex(os.urandom(16))
     with open('/root/next_pass', 'wb') as crypto_file:
-        cr = crypto_file.write(rnd)
+        rnd = binascii.unhexlify(rnd)
+        crypto_file.write(rnd)
     return rnd
 
 
