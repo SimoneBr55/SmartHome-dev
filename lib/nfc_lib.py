@@ -26,15 +26,16 @@ class Card:
         hexdict = {}
         sector = 1
         block = 1
-        for byte in hexdump:
+        for i in range(0, len(hexdump), 16):
             if hexdict.get(sector) is None:
                 hexdict[sector] = []
-            hexdict[sector].append(byte)
+            hexdict[sector].append(hexdump[i:i+16])
             if block == 4:
                 block = 1
                 sector += 1
             else:
                 block += 1
+        print(hexdump)
         return hexdump, hexdict
 
     def write_all(self, file=None, dictionary=None, dump=None):  # maybe static
