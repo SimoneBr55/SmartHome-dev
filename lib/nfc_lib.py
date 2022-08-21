@@ -61,11 +61,14 @@ class Card:
         return True
 
     def write_block(self, sector, block, msg):
-        if not isinstance(sector, int) or not isinstance(block, int) or not isinstance(msg, str):
-            print("Sector has to be a `int`, Block has to be `int`, Message has to be a `str`")
+        if not isinstance(sector, int) or not isinstance(block, int) or not isinstance(msg, bytes) or not isinstance(msg, str):
+            print("Sector has to be a `int`, Block has to be `int`, Message has to be a `bytes` or `str`")
             return False
-        msg = msg.encode('ascii')
-        hex_string = binascii.hexlify(msg)
+        if isinstance(msg, str):
+            msg = msg.encode('ascii')
+            hex_string = binascii.hexlify(msg)
+        else:
+            hex_string = msg
         if len(hex_string) != 32:  # add padding possibility for hexstrings with lt 32 hexchars
             print("32 hex values are needed")
             return False
